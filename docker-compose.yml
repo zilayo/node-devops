@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  op-reth:
+    build:
+      context: .
+      dockerfile: reth/Dockerfile
+    ports:
+      - "127.0.0.1:9545:9545"   # RPC
+      - "127.0.0.1:9546:9546"   # websocket
+      - "127.0.0.1:9551:9551"   # engine auth
+      - "31303:30303"           # P2P TCP
+      - "31303:30303/udp"       # P2P UDP
+      - "127.0.0.1:9101:9101"   # metrics
+    volumes:
+        - ./rethdata:./rethdata
+    stop_grace_period: 8m
+
+  magi:
+    build:
+      context: .
+      dockerfile: magi/Dockerfile
+    depends_on:
+      - reth
+    ports:
+      - "127.0.0.1:8545:8545"     # L1 Reth RPC
+      - "127.0.0.1:9200:9200"     # Magi metrics
+      - "127.0.0.1:9645:9645"     # Magi RPC
+    volumes:
+      - ./jwttoken/jwt.hex:./config/jwt.hex
+    stop_grace_period: 8m
+
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: prometheus
+    profiles:
+      - metrics
+    ports:
+      - "127.0.0.1:9102:9090" # metrics
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
