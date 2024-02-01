@@ -16,6 +16,8 @@ services:
         - ${PWD}/rethdata:${PWD}/rethdata
         - ${PWD}/rethlogs:${PWD}/rethlogs
     stop_grace_period: 8m
+    env_file:
+      - .env
 
   magi:
     build:
@@ -39,3 +41,5 @@ services:
       - --config.file=/etc/prometheus/prometheus.yml
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    env_file:
+      - .env
