@@ -9,7 +9,7 @@ folders:
 	@./gen-dirs.sh
 
 start:
-	docker compose up -d
+	docker compose up -d $(ARGS)
 
 stop:
 	docker compose down
