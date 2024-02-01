@@ -24,7 +24,6 @@ services:
     depends_on:
       - op-reth
     ports:
-      - "127.0.0.1:8545:8545"     # L1 Reth RPC
       - "127.0.0.1:9200:9200"     # Magi metrics
       - "127.0.0.1:9645:9645"     # Magi RPC
     stop_grace_period: 8m

@@ -1,7 +1,7 @@
 #!/bin/sh
 set -e
 
-L1_RPC_URL="http://127.0.0.1:8545"
+L1_RPC_URL="http://host.docker.internal:8545"
 EXECUTION_CLIENT="op-reth"
 RPC_PORT=9645
 SYNC_MODE="full"
