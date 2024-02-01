@@ -1,5 +1,12 @@
 version: '3.8'
 
+networks:
+  op-node:
+    ipam:
+      driver: default
+      config:
+        subnet: 172.20.0.0/16
+
 services:
   op-reth:
     build:
@@ -20,6 +27,8 @@ services:
       - .env
     extra_hosts:
       - "host.docker.internal:host-gateway"
+    networks:
+      - op-node
 
   magi:
     build:
@@ -35,6 +44,8 @@ services:
       - .env
     extra_hosts:
       - "host.docker.internal:host-gateway"
+    networks:
+      - op-node
 
   prometheus:
     image: prom/prometheus:latest
