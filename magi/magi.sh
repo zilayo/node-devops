@@ -8,7 +8,7 @@ SYNC_MODE="full"
 
 magi \
     --network "./rollup.json" \
-    --jwt-secret $JWT_PATH \
+    --jwt-secret $(cat $JWT_PATH) \
     --l1-rpc-url $L1_RPC_URL \
     --l2-rpc-url http://${EXECUTION_CLIENT}:9545 \
     --l2-engine-url http://${EXECUTION_CLIENT}:9551 \
