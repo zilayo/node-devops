@@ -21,7 +21,7 @@ services:
       context: .
       dockerfile: magi/Dockerfile
     depends_on:
-      - reth
+      - op-reth
     ports:
       - "127.0.0.1:8545:8545"     # L1 Reth RPC
       - "127.0.0.1:9200:9200"     # Magi metrics
