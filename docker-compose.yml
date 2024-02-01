@@ -13,7 +13,8 @@ services:
       - "31303:30303/udp"       # P2P UDP
       - "127.0.0.1:9101:9101"   # metrics
     volumes:
-        - ./rethdata:./rethdata
+        - ${PWD}/rethdata:${PWD}/rethdata
+        - ${PWD}/rethlogs:${PWD}/rethlogs
     stop_grace_period: 8m
 
   magi:
@@ -26,8 +27,6 @@ services:
       - "127.0.0.1:8545:8545"     # L1 Reth RPC
       - "127.0.0.1:9200:9200"     # Magi metrics
       - "127.0.0.1:9645:9645"     # Magi RPC
-    volumes:
-      - ./jwttoken/jwt.hex:./config/jwt.hex
     stop_grace_period: 8m
 
   prometheus:
