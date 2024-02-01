@@ -19,7 +19,7 @@ exec /usr/local/bin/op-reth node \
     --ws.origins="*" \
     --ws.api=debug,eth,net,trace \
     --metrics 0.0.0.0:9101 \
-    --port="31303" \
-    --discovery.port="31303" \
+    --port="30303" \
+    --discovery.port="30303" \
     --log.file.directory ./rethlogs \
     -vvv

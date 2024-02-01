@@ -15,7 +15,7 @@ services:
     volumes:
         - ${PWD}/rethdata:${PWD}/rethdata
         - ${PWD}/rethlogs:${PWD}/rethlogs
-    stop_grace_period: 8m
+    stop_grace_period: 3m
     env_file:
       - .env
     extra_hosts:
@@ -30,7 +30,7 @@ services:
     ports:
       - "127.0.0.1:9200:9200"     # Magi metrics
       - "127.0.0.1:9645:9645"     # Magi RPC
-    stop_grace_period: 8m
+    stop_grace_period: 3m
     env_file:
       - .env
     extra_hosts:
