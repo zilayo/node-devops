@@ -3,6 +3,8 @@
 source_dashboards="$PWD/grafana/dashboards/."
 target_dashboards="/etc/grafana/provisioning/dashboards/"
 
+sudo rm -rf "$source_dashboards/*.json"
+
 sudo cp -r "$source_dashboards" "$target_dashboards"
 
 if [ $? -eq 0 ]; then
@@ -19,6 +21,7 @@ find "$target_dashboards" -name '*.json' -exec sudo sed -i 's/\${DS_PROMETHEUS}/
 source_datasources="$PWD/grafana/datasources/."
 target_datasources="/etc/grafana/provisioning/datasources/"
 
+sudo rm -rf "$source_datasources/*.yml"
 sudo cp -r "$source_datasources" "$target_datasources"
 
 if [ $? -eq 0 ]; then
