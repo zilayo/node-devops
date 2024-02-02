@@ -3,7 +3,7 @@
 source_dashboards="$PWD/grafana/dashboards/."
 target_dashboards="/etc/grafana/provisioning/dashboards/"
 
-sudo rm -rf "$source_dashboards/*.json"
+sudo rm -rf "$target_dashboards/*.json"
 
 sudo cp -r "$source_dashboards" "$target_dashboards"
 
