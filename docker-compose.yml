@@ -15,8 +15,8 @@ services:
       - "127.0.0.1:9545:9545"   # RPC
       - "127.0.0.1:9546:9546"   # websocket
       - "127.0.0.1:9551:9551"   # engine auth
-      - "31303:30303"           # P2P TCP
-      - "31303:30303/udp"       # P2P UDP
+      - "31303:31303"           # P2P TCP
+      - "31303:31303/udp"       # P2P UDP
       - "127.0.0.1:9101:9101"   # metrics
     volumes:
         - ${PWD}/rethdata:/root/rethdata
