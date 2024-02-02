@@ -5,3 +5,5 @@ mkdir -p ${SCRIPT_DIR}/rethdata
 mkdir -p ${SCRIPT_DIR}/rethlogs
 mkdir -p ${SCRIPT_DIR}/magilogs
 mkdir -p ${SCRIPT_DIR}/prometheus/prometheusdata
+
+echo "Folders created in ${SCRIPT_DIR}

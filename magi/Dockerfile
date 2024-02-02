@@ -1,5 +1,5 @@
 FROM --platform=$BUILDPLATFORM debian:bullseye-slim as base
-RUN apt-get update && apt-get install -y libudev-dev build-essential ca-certificates clang curl git libpq-dev libssl-dev pkg-config lsof lld ggc
+RUN apt-get update && apt-get install -y libudev-dev build-essential ca-certificates clang curl git libpq-dev libssl-dev pkg-config lsof lld gcc
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | bash -s -- -y
 ENV PATH="/root/.cargo/bin:${PATH}"
 
