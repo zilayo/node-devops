@@ -38,6 +38,7 @@ services:
     ports:
       - "127.0.0.1:9200:9200"     # Magi metrics
       - "127.0.0.1:9645:9645"     # Magi RPC
+      - "9876:9876"               # Magi p2p
     stop_grace_period: 3m
     env_file:
       - .env
