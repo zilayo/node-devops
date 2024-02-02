@@ -69,4 +69,6 @@ services:
     depends_on:
       - op-reth
       - magi
+    networks:
+      - op-node
 

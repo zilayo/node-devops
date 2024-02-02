@@ -24,4 +24,5 @@ exec /usr/local/bin/op-reth node \
     --log.file.directory /root/rethlogs \
     -vvv \
     --max-outbound-peers 500 \
-    --max-inbound-peers 100
+    --max-inbound-peers 100 \
+    --bootnodes "$BOOTNODES"
