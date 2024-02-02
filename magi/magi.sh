@@ -14,4 +14,5 @@ magi \
     --l2-engine-url http://${EXECUTION_CLIENT}:9551 \
     --rpc-port $RPC_PORT \
     --sync-mode $SYNC_MODE \
-    -v
+    -v \
+    --logs-dir /root/magilogs/

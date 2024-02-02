@@ -1,0 +1,6 @@
+apiVersion: 1
+
+providers:
+- name: 'op-reth-docker-dashboards'
+  options:
+    path: /etc/grafana/provisioning/dashboards

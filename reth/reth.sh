@@ -4,7 +4,7 @@ set -eu
 exec /usr/local/bin/op-reth node \
     --chain "$CHAIN_NAME" \
     --rollup.sequencer-http "$SEQUENCER_URL" \
-    --datadir="./rethdata" \
+    --datadir="/root/rethdata" \
     --http \
     --http.corsdomain="*" \
     --http.addr=0.0.0.0 \
@@ -19,7 +19,9 @@ exec /usr/local/bin/op-reth node \
     --ws.origins="*" \
     --ws.api=debug,eth,net,trace \
     --metrics 0.0.0.0:9101 \
-    --port="30303" \
-    --discovery.port="30303" \
-    --log.file.directory ./rethlogs \
-    -vvv
+    --port="31303" \
+    --discovery.port="31303" \
+    --log.file.directory /root/rethlogs \
+    -vvv \
+    --max-outbound-peers 500 \
+    --max-inbound-peers 100

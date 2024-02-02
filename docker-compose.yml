@@ -19,8 +19,8 @@ services:
       - "31303:30303/udp"       # P2P UDP
       - "127.0.0.1:9101:9101"   # metrics
     volumes:
-        - ${PWD}/rethdata:${PWD}/rethdata
-        - ${PWD}/rethlogs:${PWD}/rethlogs
+        - ${PWD}/rethdata:/root/rethdata
+        - ${PWD}/rethlogs:/root/rethlogs
     stop_grace_period: 3m
     env_file:
       - .env
@@ -28,6 +28,7 @@ services:
       - "host.docker.internal:host-gateway"
     networks:
       - op-node
+    restart: unless-stopped
 
   magi:
     build:
@@ -39,6 +40,7 @@ services:
       - "127.0.0.1:9200:9200"     # Magi metrics
       - "127.0.0.1:9645:9645"     # Magi RPC
       - "9876:9876"               # Magi p2p
+      - "9876:9876/udp"           # Magi p2p
     stop_grace_period: 3m
     env_file:
       - .env
@@ -46,6 +48,9 @@ services:
       - "host.docker.internal:host-gateway"
     networks:
       - op-node
+    volumes:
+      - ${PWD}/magilogs:/root/magilogs
+    restart: unless-stopped
 
   prometheus:
     image: prom/prometheus:latest
@@ -56,6 +61,12 @@ services:
       - "127.0.0.1:9102:9090" # metrics
     command:
       - --config.file=/etc/prometheus/prometheus.yml
+      - --storage.tsdb.path=/prometheusdata
     volumes:
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - ${PWD}/prometheus/:/etc/prometheus/
+      - ${PWD}/prometheus/data/:/prometheusdata
+    restart: unless-stopped
+    depends_on:
+      - op-reth
+      - magi
 
