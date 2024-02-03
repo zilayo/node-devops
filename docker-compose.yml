@@ -62,7 +62,7 @@ services:
       - --storage.tsdb.path=/prometheusdata
     volumes:
       - ${PWD}/prometheus/:/etc/prometheus/
-      - ${PWD}/prometheus/data/:/prometheusdata
+      - prometheus_data:/prometheusdata
     restart: unless-stopped
     depends_on:
       - op-reth
@@ -70,3 +70,5 @@ services:
     networks:
       - op-node
 
+volumes:
+  prometheus_data
