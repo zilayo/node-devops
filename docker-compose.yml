@@ -71,4 +71,4 @@ services:
       - op-node
 
 volumes:
-  prometheus_data
+  prometheus_data:
