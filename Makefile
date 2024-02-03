@@ -15,6 +15,6 @@ stop:
 	docker compose down
 
 clean:
-  @sudo rm -rf rethdata
-  @sudo rm -rf rethlogs
-  @sudo rm -rf magilogs
+	@echo rm -rf rethdata
+	@sudo rm -rf rethlogs
+	@sudo rm -rf magilogs
