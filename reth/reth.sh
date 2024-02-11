@@ -1,6 +1,16 @@
 #!/bin/bash
 set -eu
 
+ADDITIONAL_ARGS=""
+
+if [ -n "${EXECUTION_BOOTNODES-}" ]; then
+    ADDITIONAL_ARGS="$ADDITIONAL_ARGS --bootnodes=$EXECUTION_BOOTNODES"
+fi
+
+if [ -n "${EXECUTION_TRUSTED_PEERS-}"  ]; then
+    ADDITIONAL_ARGS="$ADDITIONAL_ARGS --trusted-peers=$EXECUTION_TRUSTED_PEERS"
+fi
+
 exec /usr/local/bin/op-reth node \
     --chain "$CHAIN_NAME" \
     --rollup.sequencer-http "$SEQUENCER_URL" \
@@ -25,4 +35,4 @@ exec /usr/local/bin/op-reth node \
     -vvv \
     --max-outbound-peers 500 \
     --max-inbound-peers 100 \
-    --bootnodes "$BOOTNODES"
+    $ADDITIONAL_ARGS

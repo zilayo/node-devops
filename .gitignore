@@ -2,3 +2,5 @@ jwttoken
 .env
 magi/rollup.json
 magi/genesis.json
+
+*.log

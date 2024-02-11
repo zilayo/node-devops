@@ -7,6 +7,18 @@ RPC_PORT=9645
 RPC_ADDR="0.0.0.0"
 SYNC_MODE="full"
 
+ADDITIONAL_ARGS=""
+
+# TODO - currently magi doesn't support configuring bootnodes/trusted peers
+
+if [ -n "${CONSENSUS_BOOTNODES-}" ]; then
+    ADDITIONAL_ARGS="$ADDITIONAL_ARGS --bootnodes=$CONSENSUS_BOOTNODES"
+fi
+
+if [ -n "${CONSENSUS_TRUSTED_PEERS-}" ]; then
+    ADDITIONAL_ARGS="$ADDITIONAL_ARGS --trusted-peers=$CONSENSUS_TRUSTED_PEERS"
+fi
+
 exec /usr/local/bin/magi \
     --network "$CHAIN_NAME" \
     --jwt-secret $(cat $JWT_PATH) \
@@ -17,4 +29,5 @@ exec /usr/local/bin/magi \
     --rpc-addr "$RPC_ADDR" \
     --sync-mode "$SYNC_MODE" \
     -v \
-    --logs-dir /root/magilogs/
+    --logs-dir /root/magilogs/ \
+    $ADDITIONAL_ARGS
