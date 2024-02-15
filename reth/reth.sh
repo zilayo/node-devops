@@ -14,6 +14,8 @@ if [ -n "${EXECUTION_TRUSTED_PEERS-}"  ]; then
     ADDITIONAL_ARGS="$ADDITIONAL_ARGS --trusted-peers=$EXECUTION_TRUSTED_PEERS"
 fi
 
+PUBLIC_IP=$(curl -s v4.ident.me)
+
 exec /usr/local/bin/op-reth node \
     --chain "$CHAIN_NAME" \
     --rollup.sequencer-http "$SEQUENCER_URL" \
@@ -38,4 +40,5 @@ exec /usr/local/bin/op-reth node \
     -vvv \
     --max-outbound-peers 500 \
     --max-inbound-peers 100 \
+    --nat extip:"$PUBLIC_IP" \
     $ADDITIONAL_ARGS
