@@ -24,7 +24,7 @@ fi
 
 exec /usr/local/bin/magi \
     --network "$CHAIN_NAME" \
-    --jwt-secret $(cat $JWT_PATH) \
+    --jwt-secret $(cat "./jwt.hex") \
     --l1-rpc-url $L1_RPC_URL \
     --l2-rpc-url http://${EXECUTION_CLIENT}:9545 \
     --l2-engine-url http://${EXECUTION_CLIENT}:9551 \
