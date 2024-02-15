@@ -1,5 +1,8 @@
 #!/bin/bash
-set -eu
+set -e
+
+RUST_LOG="debug,net=trace"
+RUST_LOG_TARGET=1
 
 ADDITIONAL_ARGS=""
 

@@ -1,6 +1,9 @@
 #!/bin/sh
 set -e
 
+RUST_LOG="debug,discv5=trace"
+RUST_LOG_TARGET=1
+
 L1_RPC_URL="http://host.docker.internal:8545"
 EXECUTION_CLIENT="op-reth"
 RPC_PORT=9645
@@ -11,12 +14,12 @@ ADDITIONAL_ARGS=""
 
 # TODO - currently magi doesn't support configuring bootnodes/trusted peers
 
-if [ -n "${CONSENSUS_BOOTNODES-}" ]; then
-    ADDITIONAL_ARGS="$ADDITIONAL_ARGS --bootnodes=$CONSENSUS_BOOTNODES"
+if [ -n "${ROLLUP_BOOTNODES-}" ]; then
+    ADDITIONAL_ARGS="$ADDITIONAL_ARGS --bootnodes=$ROLLUP_BOOTNODES"
 fi
 
-if [ -n "${CONSENSUS_TRUSTED_PEERS-}" ]; then
-    ADDITIONAL_ARGS="$ADDITIONAL_ARGS --trusted-peers=$CONSENSUS_TRUSTED_PEERS"
+if [ -n "${ROLLUP_TRUSTED_PEERS-}" ]; then
+    ADDITIONAL_ARGS="$ADDITIONAL_ARGS --trusted-peers=$ROLLUP_TRUSTED_PEERS"
 fi
 
 exec /usr/local/bin/magi \
@@ -28,6 +31,5 @@ exec /usr/local/bin/magi \
     --rpc-port "$RPC_PORT" \
     --rpc-addr "$RPC_ADDR" \
     --sync-mode "$SYNC_MODE" \
-    -v \
     --logs-dir /root/magilogs/ \
     $ADDITIONAL_ARGS

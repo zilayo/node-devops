@@ -12,20 +12,20 @@ services:
       context: .
       dockerfile: reth/Dockerfile
     ports:
-      - "127.0.0.1:9545:9545"   # RPC
-      - "127.0.0.1:9546:9546"   # websocket
-      - "127.0.0.1:9551:9551"   # engine auth
-      - "31303:31303"           # P2P TCP
-      - "31303:31303/udp"       # P2P UDP
-      - "127.0.0.1:9101:9101"   # metrics
+      - '127.0.0.1:9545:9545' # RPC
+      - '127.0.0.1:9546:9546' # websocket
+      - '127.0.0.1:9551:9551' # engine auth
+      - '31303:31303' # P2P TCP
+      - '31303:31303/udp' # P2P UDP
+      - '127.0.0.1:9101:9101' # metrics
     volumes:
-        - ${PWD}/rethdata:/root/rethdata
-        - ${PWD}/rethlogs:/root/rethlogs
+      - /var/lib/op-reth/rethdata:/root/rethdata
+      - ${PWD}/rethlogs:/root/rethlogs
     stop_grace_period: 3m
     env_file:
       - .env
     extra_hosts:
-      - "host.docker.internal:host-gateway"
+      - 'host.docker.internal:host-gateway'
     networks:
       - op-node
     restart: unless-stopped
@@ -37,15 +37,15 @@ services:
     depends_on:
       - op-reth
     ports:
-      - "127.0.0.1:9200:9200"     # Magi metrics
-      - "127.0.0.1:9645:9645"     # Magi RPC
-      - "9876:9876"               # Magi p2p
-      - "9876:9876/udp"           # Magi p2p
+      - '127.0.0.1:9200:9200' # Magi metrics
+      - '127.0.0.1:9645:9645' # Magi RPC
+      - '9876:9876' # Magi p2p
+      - '9876:9876/udp' # Magi p2p
     stop_grace_period: 3m
     env_file:
       - .env
     extra_hosts:
-      - "host.docker.internal:host-gateway"
+      - 'host.docker.internal:host-gateway'
     networks:
       - op-node
     volumes:
@@ -56,7 +56,7 @@ services:
     image: prom/prometheus:latest
     container_name: prometheus
     ports:
-      - "127.0.0.1:9102:9090" # metrics
+      - '127.0.0.1:9102:9090' # metrics
     command:
       - --config.file=/etc/prometheus/prometheus.yml
       - --storage.tsdb.path=/prometheusdata

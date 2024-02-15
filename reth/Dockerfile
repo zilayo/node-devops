@@ -7,7 +7,7 @@ ENV PATH="/root/.cargo/bin:${PATH}"
 FROM base as build
 RUN git clone https://github.com/zilayo/reth
 RUN cd reth && git checkout zil/opreth && \
-  cargo build --profile release --locked --bin op-reth --features "optimism,jemalloc,asm-keccak" && \
+  cargo build --profile release --bin op-reth --features "optimism,jemalloc,asm-keccak" && \
   cp ./target/release/op-reth /reth/op-reth
 
 FROM debian:bullseye-slim

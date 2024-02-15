@@ -12,7 +12,7 @@ start:
 	docker compose up -d $(ARGS)
 
 stop:
-	docker compose down
+	docker compose stop
 
 clean:
 	@sudo rm -rf rethdata
