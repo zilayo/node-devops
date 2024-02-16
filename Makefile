@@ -18,3 +18,6 @@ clean:
 	@sudo rm -rf rethdata
 	@sudo rm -rf rethlogs
 	@sudo rm -rf magilogs
+
+build:
+	docker compose build

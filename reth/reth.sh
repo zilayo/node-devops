@@ -43,4 +43,6 @@ exec /usr/local/bin/op-reth node \
     --max-outbound-peers 500 \
     --max-inbound-peers 100 \
     --nat extip:"$PUBLIC_IP" \
+    --debug.engine-api-store /root/rethlogs \
+    --log.file.filter "debug" \
     $ADDITIONAL_ARGS
