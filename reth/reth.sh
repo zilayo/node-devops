@@ -35,6 +35,8 @@ exec /usr/local/bin/op-reth node \
     --ws.api=debug,eth,net,trace \
     --metrics 0.0.0.0:9101 \
     --port="31303" \
+    --addr="0.0.0.0" \
+    --discovery.addr="0.0.0.0" \
     --discovery.port="31303" \
     --log.file.directory /root/rethlogs \
     -vvv \

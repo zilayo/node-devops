@@ -6,14 +6,14 @@ scrape_configs:
   - job_name: magi
     scrape_interval: 5s
     static_configs:
-      - targets: ['localhost:9200']
+      - targets: ['magi:9200']
   
   - job_name: op-reth
     scrape_interval: 5s
     static_configs:
-      - targets: ['localhost:9101']
+      - targets: ['op-reth:9101']
 
   - job_name: docker-prometheus
     scrape_interval: 5s
     static_configs:
-      - targets: ['localhost:9102']
+      - targets: ['localhost:9090']
